@@ -50,15 +50,15 @@ $ npm test
 
 ## Use
 #### `source(filepath, [opts,] callback);`
-* **`filepath`** The full path to the shell script that should be sourced.
-* **`opts`** An options object which can contain:
-  * **`source`** A boolean. Defaults to `true`. If set to `false`, the callback can receive the evironment object as its second argument and `process.env` will be left unmolested.  
-  * **`wrapper`** Use your own wrapper script. [`source.sh`](https://github.com/jessetane/shell-source/blob/master/source.sh) is used by default.
-  * **`reserved`** An object to merge with the default [blacklist](https://github.com/jessetane/shell-source/blob/master/index.js#L5) where `SHLVL` and `_` are already set to `true`.
-* **`callback`** A callback with signature:
+* `filepath` The full path to the shell script that should be sourced.
+* `opts` An options object which can contain:
+  * `source` A boolean. Defaults to `true`. If set to `false`, the callback can receive the evironment object as its second argument and `process.env` will be left unmolested.  
+  * `wrapper` Use your own wrapper script. [`source.sh`](https://github.com/jessetane/shell-source/blob/master/source.sh) is used by default.
+  * `reserved` An object to merge with the default [blacklist](https://github.com/jessetane/shell-source/blob/master/index.js#L5) where `SHLVL` and `_` are already set to `true`.
+* `callback` A callback with signature:
 ```javascript
 function(err, environment) {
-  console.log(err, environment);
+  // console.log(err, environment);
 }
 ```
 
