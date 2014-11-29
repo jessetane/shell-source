@@ -1,6 +1,10 @@
 # shell-source
 Source environment variables from a shell script into a [Node.js](http://nodejs.org/) process.
 
+[![npm](http://img.shields.io/npm/v/shell-source.svg?style=flat-square)](http://www.npmjs.org/shell-source)
+[![tests](https://img.shields.io/travis/jessetane/shell-source.svg?style=flat-square&branch=master)](https://travis-ci.org/jessetane/shell-source)
+[![coverage](https://img.shields.io/coveralls/jessetane/shell-source.svg?style=flat-square&branch=master)](https://coveralls.io/r/jessetane/shell-source)
+
 #### Dragons:
 > Since sourcing a shell script means actually executing code, it is an unsafe thing to do unless you can 100% guarantee its contents are not `rm -rf /`. You've been warned!
 
