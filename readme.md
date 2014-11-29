@@ -46,10 +46,12 @@ $ npm test
 
 ## Use
 #### `source(filepath, [opts,] callback);`
-* `filepath` The full path to the shell script that should be sourced.
-* `opts` An options object which can contain:
-	* `source` A boolean. Defaults to `true`. If set to `false`, the callback can receive the evironment object as its second argument and `process.env` will be left unmolested.
-* `callback` A callback with signature:
+* **`filepath`** The full path to the shell script that should be sourced.
+* **`opts`** An options object which can contain:
+  * **`source`** A boolean. Defaults to `true`. If set to `false`, the callback can receive the evironment object as its second argument and `process.env` will be left unmolested.  
+  * **`wrapper`** Use your own wrapper script. [`source.sh`](https://github.com/jessetane/shell-source/blob/master/source.sh) is used by default.
+  * **`reserved`** An object to merge with the default [blacklist](https://github.com/jessetane/shell-source/blob/master/index.js#L5) where `SHLVL` and `_` are already set to `true`.
+* **`callback`** A callback with signature:
 ```javascript
 function(err, environment) {
 	console.log(err, environment);
@@ -57,7 +59,7 @@ function(err, environment) {
 ```
 
 ## Notes
-Obviously it would be really nice if this could be done synchronously. However, until something like [this](http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-execsync-a-synchronous-api-for-child-processes) lands on stable, I'm not sure if there is a sane way to accomplish it. If there is, holla.
+Obviously it would be really nice if this could be done synchronously. However, until something like [this](http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-execsync-a-synchronous-api-for-child-processes) lands on stable, I'm not sure if there is a sane way to accomplish it. If there is, please let me know.
 
 ## Releases
 The latest stable version is published to [npm](https://www.npmjs.org/package/shell-source).
