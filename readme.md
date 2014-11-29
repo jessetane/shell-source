@@ -12,7 +12,7 @@ Source environment variables from a shell script into a [Node.js](http://nodejs.
 You have some configuration data stored in a sourcable shell script, but need access to that data from a JavaScript program. You could try to parse the file as text, but that would only work if you could be sure the script does not expand any variables or execute any code.
 
 ## How
-Spawns the process owner's default shell and executes a POSIX compliant wrapper script that in turn [sources](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x237.html) the file of your choosing. The wrapper then calls `env` which writes the child process' updated environment to stdout. The parent (Node.js) process can then parse this output and update `process.env` accordingly.
+Spawns the process owner's default shell and executes a [POSIX](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot) compliant wrapper script that in turn [sources](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x237.html) the file of your choosing. The wrapper then calls [`printenv`](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html) which writes the child process' updated environment to stdout. The parent (Node.js) process then parses this and updates `process.env` accordingly.
 
 ## Example
 Consider the (contrived) example below of a script that needs to be executed before its variables can be evaluated in a useful way:
@@ -58,12 +58,12 @@ $ npm test
 * **`callback`** A callback with signature:
 ```javascript
 function(err, environment) {
-	console.log(err, environment);
+  console.log(err, environment);
 }
 ```
 
 ## Notes
-Obviously it would be really nice if this could be done synchronously. However, until something like [this](http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-execsync-a-synchronous-api-for-child-processes) lands on stable, I'm not sure if there is a sane way to accomplish it. If there is, please let me know.
+Obviously it would be nice if this could be done synchronously. However, until something like [this](http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-execsync-a-synchronous-api-for-child-processes) lands on stable, I'm not sure if there is a sane way to accomplish it. If there is, please let me know.
 
 ## Releases
 The latest stable version is published to [npm](https://www.npmjs.org/package/shell-source).
