@@ -67,7 +67,7 @@ Obviously it would be nice if this could be done synchronously. However, until s
 
 ## Releases
 The latest stable version is published to [npm](https://www.npmjs.org/package/shell-source).
-* [1.0.0](https://github.com/jessetane/shell-source/releases/tag/1.0.0)
+* [1.0.x](https://github.com/jessetane/shell-source/releases/tag/1.0.1)
  * First release.
 
 ## License
