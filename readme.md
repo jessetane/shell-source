@@ -15,7 +15,7 @@ You have some configuration data stored in a sourcable shell script, but need ac
 Spawns the process owner's default shell and executes a [POSIX](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot) compliant wrapper script that in turn [sources](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x237.html) the file of your choosing. The wrapper then calls [`printenv`](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html) which writes the child process' updated environment to stdout. The parent (Node.js) process then parses this output and updates `process.env`.
 
 ## Example
-Consider the script below that needs to execute code before its variables can be evaluated in a useful way:
+Consider the script below that needs to execute code before its variables can be evaluated:
 ```bash
 export SERVER_HOST="$(hostname)"
 export SERVER_PORT="$(grep -m1 '# HTTP Alternate' < /etc/services | sed 's/[^0-9]*\(.*\)\/.*/\1/')"
