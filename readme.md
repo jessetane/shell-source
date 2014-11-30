@@ -66,7 +66,7 @@ function(err, environment) {
 Obviously it would be nice if this could be done synchronously. However, until something like [this](http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-execsync-a-synchronous-api-for-child-processes) lands on stable, I'm not sure if there is a sane way to accomplish it. If there is, please let me know.
 
 ## Releases
-The latest stable version is published to [npm](https://www.npmjs.org/package/shell-source).
+The latest stable release is published to [npm](https://www.npmjs.org/package/shell-source). Tarballs for each release can be found [here](https://github.com/jessetane/shell-source/releases).
 * [1.0.x](https://github.com/jessetane/shell-source/releases/tag/1.0.1)
  * First release.
 
