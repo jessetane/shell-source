@@ -6,23 +6,23 @@ Source environment variables from a shell script into a [Node.js](http://nodejs.
 [![coverage](https://img.shields.io/coveralls/jessetane/shell-source.svg?style=flat-square&branch=master)](https://coveralls.io/r/jessetane/shell-source)
 
 #### Dragons:
-> Since sourcing a shell script means actually executing code, it is an unsafe thing to do unless you can 100% guarantee its contents are not `rm -rf /`. You've been warned!
+> Since sourcing a shell script allows it to execute arbitrary code, you should be 100% sure its contents are not malicious!
 
 ## Why
-You have some configuration data stored in a sourcable shell script, but need access to that data from a JavaScript program. You could try to parse the file as text, but that would only work if you could be sure the script does not expand any variables or execute any code.
+You have some configuration data stored in a sourcable shell script, but need access to that data from a JavaScript program. You could try to parse the file as text, but that would only work if the script does not execute code or expand any variables.
 
 ## How
-Spawns the process owner's default shell and executes a [POSIX](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot) compliant wrapper script that in turn [sources](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x237.html) the file of your choosing. The wrapper then calls [`printenv`](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html) which writes the child process' updated environment to stdout. The parent (Node.js) process then parses this and updates `process.env` accordingly.
+Spawns the process owner's default shell and executes a [POSIX](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#dot) compliant wrapper script that in turn [sources](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x237.html) the file of your choosing. The wrapper then calls [`printenv`](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html) which writes the child process' updated environment to stdout. The parent (Node.js) process then parses this output and updates `process.env`.
 
 ## Example
-Consider the (contrived) example below of a script that needs to be executed before its variables can be evaluated in a useful way:
+Consider the script below that needs to execute code before its variables can be evaluated in a useful way:
 ```bash
 export SERVER_HOST="$(hostname)"
 export SERVER_PORT="$(grep -m1 '# HTTP Alternate' < /etc/services | sed 's/[^0-9]*\(.*\)\/.*/\1/')"
 export PATH="node_modules/.bin:$PATH"
 ```
 
-A Node.js process can then use `shell-source` to emulate the behavior of `sh`'s `.` built-in, executing the script before absorbing any enviroment changes it effects:
+A Node.js process can use `shell-source` to emulate the behavior of `sh`'s `.` built-in, executing the script before absorbing any enviroment changes it effects:
 ```javascript
 var source = require('shell-source');
 
