@@ -67,6 +67,8 @@ Obviously it would be nice if this could be done synchronously. However, until s
 
 ## Releases
 The latest stable release is published to [npm](https://www.npmjs.org/package/shell-source). Tarballs for each release can be found [here](https://github.com/jessetane/shell-source/releases).
+* [1.1.0](https://github.com/jessetane/shell-source/releases/tag/1.1.0)
+ * xtend is not a dev dependency (thanks @sparkleholic)
 * [1.0.x](https://github.com/jessetane/shell-source/releases/tag/1.0.1)
  * First release.
 
